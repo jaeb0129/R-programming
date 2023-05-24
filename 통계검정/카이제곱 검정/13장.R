@@ -1,7 +1,7 @@
 pacman::p_load(tidyverse, tidymodels)
 set.seed(1234)
 
-tennis_big3_results <- read.csv('C:/Users/jaeb0/Desktop/baseball/sports_r/tennis_big3_results.csv') %>%
+tennis_big3_results <- read.csv(tennis_big3_results.csv') %>%
   as_tibble
 
 tennis_big3_results %>% glimpse()
@@ -10,11 +10,11 @@ pacman::p_load(janitor)
 
 tennis_big3_results %>%
   as_tibble(., .name_repair = janitor::make_clean_names)-> tennis_big3_results
-# 열 이름이 전부 소문자로 바뀜
+  # 열 이름 소문자 변환
 
 tennis_big3_results %>%
   mutate(surface = str_to_lower(surface),
-        w_l = str_to_lower(w_l)) -> tennis_big3_results # 소문자 변환 / 열
+        w_l = str_to_lower(w_l)) -> tennis_big3_results # 소문자 변환 
 
 tennis_big3_results %>%
   filter(surface %in% c('clay', 'grass', 'hard')) %>%
@@ -37,7 +37,7 @@ tennis_big3_results %>%
          surface %in% c('clay', 'grass', 'hard'),
          w_l %in% c('w', 'l')) %>%
   specify(surface ~ w_l) %>% # 함수로 문제 특정/코트별 승패 기록 알아보려함
-  hypothesise(null = 'independence') %>% # 코트별 승률에는 차이가 없다. 귀무가설 / 나달은 클레이 코트에서 강하다 대립가설
+  hypothesise(null = 'independence') %>% # 코트별 승률에는 차이가 없다. 귀무가설 / 나달은 클레이 코트에서 강하다. 대립가설
   calculate(stat = 'Chisq') # 27.4
 
 # 그냥 chisq_test()
