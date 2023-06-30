@@ -14,9 +14,7 @@
 - 다중공선성이란 독립변수들 간에 강한 상관관계가 존재하는 경우를 말한다.
 - Variance inflation factor(VIF) 분산팽창요인이 10보다 크다면 다중공선성이 존재한다.
 - 그러나 독립(설명)변수들에 몇 개의 선형종속관계가 존재하는지 알 수 없다.
-- 이때 고유값 eigenval <- eigen()$values함수 //조건지수 sqrt(max(eigenval) / eigenval) 사용 -> 가장 큰 고유값과 가장 작은 고유값 비교
 
-- regbook 패키지 vif() 사용 / summary(vif(lm(y ~.,  data))) / VIF, 고유값, 조건지수 분산비 나옴 
 8. PCA와 FA의 차이점?
 
 9. GLM을 해 본 적이 있는가? 각 link function별 특징을 얘기해줄 수 있는가?
