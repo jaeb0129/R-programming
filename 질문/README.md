@@ -35,5 +35,3 @@
 ### 정상성 검정에는 다양한 검정이 있다.
 - ADF(Augmented Dicky-Fuller) 검정
 - ADF 검정은 단위근(Unit-root) 검정입니다. 정상성을 판단할 때, ADF 검정은 KPSS와 함께 자주 활용됩니다. ADF 검정의 귀무 가설은 ‘시계열에 단위근이 존재한다’ 이며, 대립가설은 ‘시계열이 정상성을 만족한다’입니다. R에서는 tseries 패키지의 adf.test를 이용
-
-12. linear model이 왜 중요할까?
