@@ -105,18 +105,17 @@
 
   ① 전진 선택법(forward selection) : 절편만 있는 상수 모형으로부터 시작해 중요하다고 생각되는 설명변수부터 차례로 모형에 추가
 
-ex) step(lm(y~1, data=df), scope=list(lower=~1, upper=~x1+x2+x3+x4), direction="forward") 
+ex) step(forward_step0, scope = ~Population + Illiteracy + Life.Exp + Murder + HS.Grad + Frost + Area, direction ="forward")
 
  ② 후진 제거법(backward elimination) : 독립변수 후보 모두를 포함한 모형에서 출발해 제곱합의 기준으로 가장 적은 영향을 주는 변수부터 하나씩 제거하면서 더이상 유의하지 않은 변수가 없을 때까지 설명변수를 제거하고 이 때의 모형을 선택 
 
-ex) step(lm(y~x1+x2+x3+x4, data=df), direction="backward")
+ex) step(backward_step0, scope = ~Population + Illiteracy + Life.Exp + Murder + HS.Grad + Frost + Area, direction ="backward")
 
 ③ 단계별 방법(st epwise method) = 전진선택법 + 후진 선택법
 
   전진선택법에 의해 변수를 추가하면서 새롭게 추가된 변수에 기인해 기존 변수의 중요도가 약화되면 해당 변수를 제거하는 등 단계별로 추가 또는 제거되는 변수의 여부를 검토해 더 이상 없을 때 중단 
 
-ex) step(lm(y~1, data=df), scope=list(lower=~1, upper=~x1+x2+x3+x4), direction="both")
-
+ex) step(backward_step0, scope = ~Population + Illiteracy + Life.Exp + Murder + HS.Grad + Frost + Area, direction ="both")
 
 출처: https://blog.naver.com/aaaaakk02/222626269935
 [R] 다중선형회귀분석|작성자 진하루
