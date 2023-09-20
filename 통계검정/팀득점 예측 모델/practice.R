@@ -1,40 +1,7 @@
 library(Lahman)
 library(dplyr)
-a <- subset(Batting, yearID>2010 & yearID<2017 & G>150)
-b <- subset(People, sel=c("playerID", "weight"))
-?Lahman
-c <- merge(a, b, by = "playerID")
-c$slg <- with(c, ((H-X2B-X3B-HR) + 2*X2B + 3*X3B + 4*HR) / AB)
-with(c, plot(weight, slg))
-# 그래프는 우상향
-abline(lm(slg~weight, c))
-# 체중이 낮거나 높은 수준에서 오차가 약간 줄어드는 것이 확인되어
-# 완전한 등분산성이 유지되고 있는 것으로 보이지 않음.
-fit<-lm(slg~weight,c)
-fit_res<-resid(fit)
-plot(c$weight, fit_res)
-abline(0,0)
-
-# Q-Q플롯에서 점들이 기준선 따르면 정규분포한다고 판단
-# 그러나 낮은 수준의 장타율에서 기준선을 벗어나면서 정규분포 벗어나는 경향 나타남.
-qqnorm(fit_res)
-qqline(fit_res)
-
-#33.32% = 5타석에서 2번 출루 / 출루율 4할 6푼의 조이보토
-a<-rbinom(10000, 5, 0.46)
-table(a)/10000
-
-b<-rbinom(1000, 5, 0.46)
-table(b)/1000
-
-base <- 0:5
-base
-
-case<- choose(5, base)
-case
 
 # 팀 승률, 팀 타율 모델과 팀 승률, 팀 방어율 모델
-library(Lahman)
 rec <- subset(Teams, yearID == 2014)
 rec$wp <- rec$W / rec$G
 rec$avg <- rec$H / rec$AB
@@ -46,7 +13,6 @@ summary(avg_model)
 summary(ERA_model)
 # 표준오차 0.04128
 # 방어율 모델이 타율 모델의 표준오차보다 작아서 팀승률 예측에 더 정확한 결과 얻을 수 있음.
-# 승률과 음의 관계(-0.09917), 설명력 0.5146 야구는 투수력? 완전 틀린말은 아님
 
 a <- subset(Teams, yearID == 2015)
 attach(a)
@@ -63,8 +29,7 @@ abline(lm(r_g~avg,a))
 
 # 팀득점 예측을 위해 만든 추정모델 해석
 # 실시간으로 업데이트되지 않아 현재 데이터가 모집단을 대표한다고 하기 어려운 경우,
-# 모집단을 추정하는데 심각한 예측 오류가 없을 정도의 데이터를 빅데이터에서
-# 임의로 추출해서 편향없이 예측하는 것도 좋은 방법.
+# 모집단을 추정하는데 심각한 예측 오류가 없을 정도의 데이터를 빅데이터에서 임의로 추출해서 편향없이 예측하는 것도 좋은 방법.
 
 # install.packages("pwr")
 library(pwr)
@@ -89,4 +54,4 @@ predict(d, e, level=0.95, interval="confidence")
 # 점추정의 한계를 극복하기 위해 구간추정 사용
 # 2할7푼을 갖고 있는 팀으로 구성된 표본(평균 타율이 2할 7푼인 팀)에는 모수의 게임당 평균득점이 [4.78, 4.84]
 # 구간에 있을 것으로 95%확신하나, 5%의 불확실성도 있음
-predict(d, e, level=0.95, interval="predict") # 예측구간/ 2할7푼인 개별 팀이 기록할 것으로 예측되는 팀 득점 구간 찾기
+predict(d, e, level=0.95, interval="predict") # 예측구간/ 팀 타율이 2할7푼인 개별 팀이 기록할 것으로 예측되는 팀 득점 구간 찾기
