@@ -9,7 +9,7 @@ mergeUserDic(data.frame(c("이모티콘"), c("ncn")))
              
 setwd("C:/Users/jaeb0/Desktop/워드클라우드")
 getwd()
-text1 <- readLines('랜더스방.txt')
+text1 <- readLines('kakao_talk.txt')
 text1
 text2 <- extractNoun(text1)
 text3 <- unlist(text2)
