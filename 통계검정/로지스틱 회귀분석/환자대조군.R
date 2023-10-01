@@ -1,5 +1,5 @@
-dt_jk = read.csv('C:/Users/jaeb0/Desktop/학교/생명과학빅데이터분석/test_final_jk.csv')
-dt_m20 = read.csv('C:/Users/jaeb0/Desktop/학교/생명과학빅데이터분석/test_final_m20.csv')
+dt_jk = read.csv('C:/Users/jaeb0/Desktop/test_final_jk.csv')
+dt_m20 = read.csv('C:/Users/jaeb0/Desktop/test_final_m20.csv')
 
 library(dplyr)
 
